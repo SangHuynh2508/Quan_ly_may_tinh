@@ -51,7 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CurrentUser.cs" />
+    <Compile Include="KhachHangBUS.cs" />
+    <Compile Include="NguoiDungBUS.cs" />
+    <Compile Include="NhaCungCapBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

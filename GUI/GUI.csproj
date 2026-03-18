@@ -158,6 +158,10 @@
       <Project>{72a50026-63e7-4760-925c-9dc11207bd8c}</Project>
       <Name>BUS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{8bae1ec6-8e9e-4dfd-9faf-f9f00b0a42c8}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
