@@ -1,4 +1,4 @@
-﻿using BUS;
+using BUS;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,24 @@ namespace GUI
 
         private void frmCustomer_Load(object sender, EventArgs e)
         {
+            txtMaKhachHang.ReadOnly = true;
             LoadTreeViewKhachHang();
+            ResetForm();
+
+            // Gán sự kiện
+            btnThem.Click += btnThem_Click;
+            btnSua.Click += btnSua_Click;
+            btnNhapLai.Click += btnNhapLai_Click;
+            btnClose.Click += btnClose_Click;
+        }
+
+        private void ResetForm()
+        {
+            txtTenKhachHang.Clear();
+            txtSDT.Clear();
+            txtDiaChi.Clear();
+            txtMaKhachHang.Text = bus.PhatSinhMaTuDong().ToString();
+            dataGridView1.DataSource = null;
         }
         private void LoadTreeViewKhachHang()
         {
@@ -80,16 +97,80 @@ namespace GUI
 
                 if (kh != null)
                 {
+                    txtMaKhachHang.Text = kh.MaKhachHang.ToString();
                     txtTenKhachHang.Text = kh.HoTen;
                     txtSDT.Text = kh.SoDienThoai;
                     txtDiaChi.Text = kh.DiaChi;
 
                 
-                    int maKH = int.Parse(e.Node.Name);
+                    int maKH = kh.MaKhachHang;
                     dataGridView1.DataSource = bus.LayLichSuMuaHang(maKH);
                     FormatDataGridView();
                 }
             }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTenKhachHang.Text))
+            {
+                MessageBox.Show("Vui lòng nhập tên khách hàng!");
+                return;
+            }
+
+            KhachHang kh = new KhachHang
+            {
+                MaKhachHang = int.Parse(txtMaKhachHang.Text),
+                HoTen = txtTenKhachHang.Text,
+                SoDienThoai = txtSDT.Text,
+                DiaChi = txtDiaChi.Text
+            };
+
+            try
+            {
+                bus.Them(kh);
+                MessageBox.Show("Thêm thành công!");
+                LoadTreeViewKhachHang();
+                ResetForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMaKhachHang.Text)) return;
+
+            KhachHang kh = new KhachHang
+            {
+                MaKhachHang = int.Parse(txtMaKhachHang.Text),
+                HoTen = txtTenKhachHang.Text,
+                SoDienThoai = txtSDT.Text,
+                DiaChi = txtDiaChi.Text
+            };
+
+            try
+            {
+                bus.Sua(kh);
+                MessageBox.Show("Cập nhật thành công!");
+                LoadTreeViewKhachHang();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnNhapLai_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

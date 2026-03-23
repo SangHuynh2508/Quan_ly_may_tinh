@@ -1,4 +1,4 @@
-﻿namespace GUI
+namespace GUI
 {
     partial class frmAccountInfo
     {
@@ -41,6 +41,7 @@
             this.txtMaVaiTro = new System.Windows.Forms.TextBox();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnThayDoiMatKhau = new System.Windows.Forms.Button();
+            this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -159,11 +160,22 @@
             this.btnThayDoiMatKhau.Text = "Thay đổi mật khẩu";
             this.btnThayDoiMatKhau.UseVisualStyleBackColor = true;
             // 
+            // chkShowPassword
+            // 
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.Location = new System.Drawing.Point(470, 390);
+            this.chkShowPassword.Name = "chkShowPassword";
+            this.chkShowPassword.Size = new System.Drawing.Size(130, 24);
+            this.chkShowPassword.TabIndex = 9;
+            this.chkShowPassword.Text = "Hiện mật khẩu";
+            this.chkShowPassword.UseVisualStyleBackColor = true;
+            // 
             // frmAccountInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 562);
+            this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.txtMatKhau);
             this.Controls.Add(this.txtTenDangNhap);
@@ -201,5 +213,6 @@
         private System.Windows.Forms.TextBox txtMaVaiTro;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnThayDoiMatKhau;
+        private System.Windows.Forms.CheckBox chkShowPassword;
     }
 }

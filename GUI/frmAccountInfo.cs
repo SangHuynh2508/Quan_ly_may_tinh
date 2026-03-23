@@ -1,4 +1,3 @@
-﻿using BUS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,8 +42,27 @@ namespace GUI
             txtTenDangNhap.Text = CurrentUser.TenDangNhap;
             txtMaVaiTro.Text = CurrentUser.VaiTro;
             txtHoTen.Text = CurrentUser.HoTen;
+            txtMaNguoiDung.Text = CurrentUser.MaNguoiDung.ToString();
+            txtMatKhau.Text = CurrentUser.MatKhau;
+
+            // Thiết lập ReadOnly
             txtTenDangNhap.ReadOnly = true;
             txtMaVaiTro.ReadOnly = true;
+            txtMaNguoiDung.ReadOnly = true;
+            txtMatKhau.ReadOnly = true;
+            txtHoTen.ReadOnly = false;
+
+            // Password character
+            txtMatKhau.UseSystemPasswordChar = true;
+
+            // Event for show password
+            chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
+            btnThoat.Click += (s, ev) => this.Close();
+        }
+
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMatKhau.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
     }
 }
