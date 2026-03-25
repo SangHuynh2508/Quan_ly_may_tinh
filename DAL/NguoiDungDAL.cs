@@ -1,34 +1,96 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace DAL
 {
-        public class NguoiDungDAL
-        {
-            private QLMayTinhDB db = new QLMayTinhDB();
+    public class NguoiDungDAL
+    {
+        private QLMayTinhDB db = new QLMayTinhDB();
 
-            // Hàm này sẽ dùng Entity Framework để lưu Họ tên mới
-            public bool CapNhatHoTen(int maND, string hoTenMoi)
+        public NguoiDung GetByMaND(int maND)
+        {
+            return db.NguoiDungs.Include(u => u.VaiTro).SingleOrDefault(u => u.MaNguoiDung == maND);
+        }
+
+        public bool CapNhatHoTen(int maND, string hoTenMoi)
+        {
+            try
             {
-                try
+                var user = db.NguoiDungs.SingleOrDefault(u => u.MaNguoiDung == maND);
+                if (user != null)
                 {
-                    // Tìm đúng người dùng trong DB dựa vào mã
-                    var user = db.NguoiDungs.SingleOrDefault(u => u.MaNguoiDung == maND);
-                    if (user != null)
-                    {
-                        user.HoTen = hoTenMoi; // Gán lại họ tên từ TextBox gửi xuống
-                        db.SaveChanges();      // Lưu thay đổi xuống SQL Server
-                        return true;
-                    }
-                    return false;
+                    user.HoTen = hoTenMoi;
+                    db.SaveChanges();
+                    return true;
                 }
-                catch
-                {
-                    return false;
-                }
+                return false;
+            }
+            catch
+            {
+                return false;
             }
         }
+
+        public bool CapNhatMatKhau(int maND, string matKhauMoi)
+        {
+            try
+            {
+                var user = db.NguoiDungs.SingleOrDefault(u => u.MaNguoiDung == maND);
+                if (user != null)
+                {
+                    user.MatKhau = matKhauMoi;
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<NguoiDung> GetAll()
+        {
+            return db.NguoiDungs.Include(u => u.VaiTro).ToList();
+        }
+
+        public List<int> GetExistingIds()
+        {
+            return db.NguoiDungs.Select(u => u.MaNguoiDung).ToList();
+        }
+
+        public void Add(NguoiDung user)
+        {
+            if (string.IsNullOrEmpty(user.MatKhau)) user.MatKhau = "123456"; // Default pass
+            db.NguoiDungs.Add(user);
+            db.SaveChanges();
+        }
+
+        public void Update(NguoiDung user)
+        {
+            var existing = db.NguoiDungs.Find(user.MaNguoiDung);
+            if (existing != null)
+            {
+                existing.HoTen = user.HoTen;
+                existing.TenDangNhap = user.TenDangNhap;
+                existing.MaVaiTro = user.MaVaiTro;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(int maND)
+        {
+            var user = db.NguoiDungs.Find(maND);
+            if (user != null)
+            {
+                db.NguoiDungs.Remove(user);
+                db.SaveChanges();
+            }
+        }
+    }
 }

@@ -1,4 +1,4 @@
-﻿namespace GUI
+namespace GUI
 {
     partial class frmSupplier
     {
@@ -141,6 +141,7 @@
             this.txtMaNCC.Location = new System.Drawing.Point(151, 55);
             this.txtMaNCC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMaNCC.Name = "txtMaNCC";
+            this.txtMaNCC.ReadOnly = true;
             this.txtMaNCC.Size = new System.Drawing.Size(182, 26);
             this.txtMaNCC.TabIndex = 1;
             // 

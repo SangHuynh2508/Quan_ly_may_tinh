@@ -1,4 +1,4 @@
-﻿namespace GUI
+namespace GUI
 {
     partial class frmProduct
     {
@@ -53,6 +53,7 @@
             // 
             this.txtMaSP.Location = new System.Drawing.Point(151, 52);
             this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.ReadOnly = true;
             this.txtMaSP.Size = new System.Drawing.Size(227, 22);
             this.txtMaSP.TabIndex = 0;
             // 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,6 @@ namespace DAL
         // 2. Hàm lấy lịch sử mua hàng bằng cách JOIN 3 bảng
         public object GetLichSuMuaHang(int maKhachHang)
         {
-            // Sử dụng LINQ để JOIN bảng HoaDon, ChiTietHoaDon và SanPham
             var query = from hd in db.HoaDons
                         join ct in db.ChiTietHoaDons on hd.MaHoaDon equals ct.MaHoaDon
                         join sp in db.SanPhams on ct.MaSanPham equals sp.MaSanPham
@@ -33,9 +32,40 @@ namespace DAL
                             ThanhToan = hd.ThanhToan
                         };
 
-            // Trả về một danh sách (List) các đối tượng ẩn danh (Anonymous type)
-            // Entity Framework sẽ tự động chuyển đổi thành dạng bảng cho DataGridView
             return query.ToList();
+        }
+
+        public List<int> GetExistingIds()
+        {
+            return db.KhachHangs.Select(k => k.MaKhachHang).ToList();
+        }
+
+        public void Add(KhachHang kh)
+        {
+            db.KhachHangs.Add(kh);
+            db.SaveChanges();
+        }
+
+        public void Update(KhachHang kh)
+        {
+            var existing = db.KhachHangs.Find(kh.MaKhachHang);
+            if (existing != null)
+            {
+                existing.HoTen = kh.HoTen;
+                existing.SoDienThoai = kh.SoDienThoai;
+                existing.DiaChi = kh.DiaChi;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(int maKH)
+        {
+            var kh = db.KhachHangs.Find(maKH);
+            if (kh != null)
+            {
+                db.KhachHangs.Remove(kh);
+                db.SaveChanges();
+            }
         }
     }
 }

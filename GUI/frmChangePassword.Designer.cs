@@ -1,4 +1,4 @@
-﻿namespace GUI
+namespace GUI
 {
     partial class frmChangePassword
     {
@@ -37,6 +37,7 @@
             this.groupbox = new System.Windows.Forms.GroupBox();
             this.btnXacNhan = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.groupbox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,6 +120,17 @@
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             // 
+            // chkShowPassword
+            // 
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.Location = new System.Drawing.Point(475, 48);
+            this.chkShowPassword.Name = "chkShowPassword";
+            this.chkShowPassword.Size = new System.Drawing.Size(130, 20);
+            this.chkShowPassword.TabIndex = 5;
+            this.chkShowPassword.Text = "Hiện mật khẩu";
+            this.chkShowPassword.UseVisualStyleBackColor = true;
+            this.groupbox.Controls.Add(this.chkShowPassword);
+            // 
             // frmChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -150,5 +162,6 @@
         private System.Windows.Forms.GroupBox groupbox;
         private System.Windows.Forms.Button btnXacNhan;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.CheckBox chkShowPassword;
     }
 }

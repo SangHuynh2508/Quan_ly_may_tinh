@@ -53,8 +53,11 @@
   <ItemGroup>
     <Compile Include="CurrentUser.cs" />
     <Compile Include="KhachHangBUS.cs" />
+    <Compile Include="LoaiSanPhamBUS.cs" />
+    <Compile Include="LoginBUS.cs" />
     <Compile Include="NguoiDungBUS.cs" />
     <Compile Include="NhaCungCapBUS.cs" />
+    <Compile Include="SanPhamBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

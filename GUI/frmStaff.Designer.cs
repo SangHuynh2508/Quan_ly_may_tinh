@@ -1,4 +1,4 @@
-﻿namespace GUI
+namespace GUI
 {
     partial class frmStaff
     {
@@ -57,6 +57,9 @@
             this.listView1.Size = new System.Drawing.Size(718, 97);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
             // 
             // groupBox1
             // 
@@ -140,6 +143,7 @@
             // 
             this.txtMaNV.Location = new System.Drawing.Point(144, 24);
             this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.ReadOnly = true;
             this.txtMaNV.Size = new System.Drawing.Size(307, 22);
             this.txtMaNV.TabIndex = 1;
             // 
@@ -218,6 +222,7 @@
             this.Controls.Add(this.listView1);
             this.Name = "frmStaff";
             this.Text = "frmStaff";
+            this.Load += new System.EventHandler(this.frmStaff_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
