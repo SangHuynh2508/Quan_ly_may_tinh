@@ -16,5 +16,6 @@ namespace BUS
         public static string HoTen { get; set; }
         public static string VaiTro { get; set; }
         public static string MatKhau { get; set; }
+        public static int MaVaiTro { get; set; }
     }
 }

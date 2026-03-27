@@ -43,6 +43,7 @@ namespace GUI
                 CurrentUser.TenDangNhap = user.TenDangNhap;
                 CurrentUser.HoTen = user.HoTen;
                 CurrentUser.VaiTro = user.VaiTro != null ? user.VaiTro.TenVaiTro : "";
+                CurrentUser.MaVaiTro = user.MaVaiTro;
 
                 frmMain f = new frmMain();
 
